@@ -1,0 +1,31 @@
+typedef enum { add,sub,inc} opcode; 
+module au ( input logic a,b, input opcode op, output logic y);
+logic add_results;
+logic sub_results;
+logic inc_results; 
+assign add_results=a+b;
+assign sub_results=a-b;
+assign inc_results=a+1;
+
+always_comb
+ case(op)
+   add:y=add_results ;
+   sub: y=sub_results ;
+   inc: y=inc_results;
+  default: y=0;
+ endcase 
+endmodule 
+
+module testbench();
+  logic a,b,op,y;
+ initial begin
+   a=0;b=0;op=0;
+   op=1;
+   b=1;op=0;
+   op=1;
+   a=1;b=0;op=0;
+   op=1;
+   b=1;op=0;
+   op=1;
+ end 
+endmodule  

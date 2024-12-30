@@ -1,0 +1,41 @@
+module AND (input logic a,b, output logic y);
+assign y= a&b ;
+endmodule 
+
+module XOR(input logic a,b, output logic y);
+assign y= a^b ;
+endmodule 
+
+module XOR3(input logic a,b,c, output logic y);
+logic n1;
+ XOR x(a,b,n1);
+ XOR x2(n1,c,y);
+endmodule 
+
+module OR (input logic a,b, output logic y);
+assign y= a|b ;
+endmodule 
+
+
+
+module full_adder_one_bit(input a,input b,input logic cin,output cout,output sum);
+XOR3 x(a,b,cin,sum);
+logic t1,t2,t3,t4,t5;
+AND and1(a,b,t1);
+XOR x2(a,b,t2);
+AND and2(t2,cin,t4);
+AND and3(a,b,t5);
+OR fin(t4,t5,cout);
+endmodule
+
+module ADDER(input [3:0] a,input [3:0]b,output [4:0] y);
+logic n1=0;
+logic n2;
+logic n3;
+logic n4;
+full_adder_one_bit fa1(a[0],b[0],0,n1,y[0]);
+full_adder_one_bit fa2(a[1],b[1],n1,n2,y[1]);
+full_adder_one_bit fa3(a[2],b[2],n2,n3, y[2]);
+full_adder_one_bit fa4(a[3],b[3],n3,n4,y[3]);
+assign y[4]=n4;
+endmodule

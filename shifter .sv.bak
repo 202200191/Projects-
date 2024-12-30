@@ -1,0 +1,14 @@
+module shifter( input a,b, output y) ;
+assign y=a >> b ;
+endmodule 
+
+
+module testbench();
+  logic a,b,y;
+ initial begin
+   a=0;b=0;
+   b=1;
+   a=1;b=0;
+   b=1;
+ end 
+endmodule  
