@@ -1,0 +1,11 @@
+typedef enum { add,sub,inc} opcode; 
+module au ( input logic a,b, input opcode op, output logic y);
+always_comb
+ case(op)
+   add: y=a+b ;
+   sub: y=a-b ;
+   inc: y=a+1;
+  default: y=0;
+ endcase 
+endmodule 
+   
